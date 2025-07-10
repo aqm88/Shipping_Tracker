@@ -13,8 +13,9 @@ class Shipment(
     private val observers = ArrayList<Observer>()
     var status = status
         set(value) {
+            val oldStatus = field
             field = value
-            addUpdate(ShippingUpdate(field, value, System.currentTimeMillis()))
+            addUpdate(ShippingUpdate(oldStatus, value, System.currentTimeMillis()))
         }
 
     var notes: ArrayList<String> = notes
