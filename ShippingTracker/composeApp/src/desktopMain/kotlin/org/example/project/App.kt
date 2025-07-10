@@ -12,8 +12,17 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.*
 import org.example.project.shipment.ShipmentObserver
 import org.example.project.simulator.TrackingSimulator
-import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
+fun formatTimestamp(timestamp: Long?): String {
+    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    if(timestamp == null) {
+        return "N/A"
+    }
+    return sdf.format(Date(timestamp))
+}
 @Composable
 @Preview
 fun App() {
@@ -96,11 +105,14 @@ fun App() {
                             Text("ID: ${observer.shipmentId}", style = MaterialTheme.typography.bodyLarge)
                             Text("Status: ${observer.shipmentStatus}")
                             Text("Location: ${observer.shipmentLocation ?: "Unknown"}")
+                            Text("Expected Delivery: ${formatTimestamp(observer.expectedShipmentDeliveryDate)}")
                             Column {
+                                Spacer(Modifier.height(8.dp))
                                 Text("Notes:")
                                 observer.shipmentNotes.forEach { note ->
                                     Text(note)
                                 }
+                                Spacer(Modifier.height(8.dp))
                                 Text("Updates:")
                                 observer.shipmentUpdateHistory.forEach { update ->
                                     Text(update)

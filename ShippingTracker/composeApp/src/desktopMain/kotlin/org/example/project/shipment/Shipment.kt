@@ -41,7 +41,7 @@ class Shipment(
     override fun notifyObservers() {
         val updateHistoryStrings: List<String> = updateHistory.map { it.toString() }
         for (obs in observers) {
-            obs.update(notes, updateHistoryStrings, expectedDeliveryDateTimestamp, status.get(), currentLocation )
+            obs.update(notes.toList(), updateHistoryStrings, expectedDeliveryDateTimestamp, status.get(), currentLocation )
         }
     }
 
@@ -51,7 +51,7 @@ class Shipment(
     }
 
     fun addNote(note: String) {
-        notes.add(note)
+        notes = ArrayList(notes).apply { add(note) }
         notifyObservers()
     }
 

@@ -1,26 +1,35 @@
 package org.example.project.shipment
 
-class ShipmentObserver(shipmentId: String,
-                       shipmentNotes: List<String>,
-                       shipmentUpdateHistory: List<String>,
-                       expectedShipmentDeliveryDate: Long?,
-                       shipmentStatus: String,
-                       shipmentLocation: String?): Observer {
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+
+class ShipmentObserver(
+    shipmentId: String,
+    shipmentNotes: List<String>,
+    shipmentUpdateHistory: List<String>,
+    expectedShipmentDeliveryDate: Long?,
+    shipmentStatus: String,
+    shipmentLocation: String?
+) : Observer {
 
     var shipmentId: String = shipmentId
         private set
-    var shipmentNotes: List<String> = shipmentNotes
-        private set
-    var shipmentUpdateHistory: List<String> = shipmentUpdateHistory
-        private set
-    var expectedShipmentDeliveryDate: Long? = expectedShipmentDeliveryDate
-        private set
-    var shipmentStatus: String = shipmentStatus
-        private set
-    var shipmentLocation: String? = shipmentLocation
+
+    var shipmentNotes by mutableStateOf(shipmentNotes)
         private set
 
+    var shipmentUpdateHistory by mutableStateOf(shipmentUpdateHistory)
+        private set
 
+    var expectedShipmentDeliveryDate by mutableStateOf(expectedShipmentDeliveryDate)
+        private set
+
+    var shipmentStatus by mutableStateOf(shipmentStatus)
+        private set
+
+    var shipmentLocation by mutableStateOf(shipmentLocation)
+        private set
 
     override fun update(
         shipmentNotes: List<String>,
