@@ -72,7 +72,7 @@ fun App() {
                         } else {
                             observer = ShipmentObserver(
                                 shipmentId = id,
-                                shipmentNotes = emptyList(),
+                                shipmentNotes = arrayListOf("Shipment not found in system!"),
                                 shipmentUpdateHistory = emptyList(),
                                 expectedShipmentDeliveryDate = null,
                                 shipmentStatus = "",
