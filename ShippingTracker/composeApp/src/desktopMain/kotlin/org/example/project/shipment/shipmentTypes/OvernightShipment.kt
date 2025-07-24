@@ -1,6 +1,6 @@
 package org.example.project.shipment.shipmentTypes
 
-import org.example.project.shipment.ShippingUpdate
+import org.example.project.shipment.observer.ShippingUpdate
 import org.example.project.statuses.Delayed
 import org.example.project.statuses.Status
 

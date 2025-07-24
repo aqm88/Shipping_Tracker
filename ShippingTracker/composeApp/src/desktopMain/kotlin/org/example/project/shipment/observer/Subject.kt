@@ -1,4 +1,4 @@
-package org.example.project.shipment
+package org.example.project.shipment.observer
 
 interface Subject {
 

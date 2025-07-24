@@ -1,9 +1,8 @@
 package org.example.project
 
 import junit.framework.TestCase.assertTrue
-import org.example.project.shipment.shipmentTypes.Shipment
-import org.example.project.shipment.ShipmentObserver
-import org.example.project.shipment.ShippingUpdate
+import org.example.project.shipment.observer.ShipmentObserver
+import org.example.project.shipment.observer.ShippingUpdate
 import org.example.project.shipment.shipmentTypes.StandardShipment
 import org.example.project.statuses.Canceled
 import org.example.project.statuses.Created

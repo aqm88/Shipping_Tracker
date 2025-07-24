@@ -1,4 +1,4 @@
-package org.example.project.shipment
+package org.example.project.shipment.observer
 import org.example.project.statuses.Status
 import java.time.Instant
 import java.time.ZoneId

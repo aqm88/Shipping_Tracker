@@ -1,4 +1,4 @@
-package org.example.project.shipment
+package org.example.project.shipment.observer
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

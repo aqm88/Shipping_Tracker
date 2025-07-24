@@ -1,6 +1,6 @@
 package org.example.project.shipment.shipmentTypes
 
-import org.example.project.shipment.ShippingUpdate
+import org.example.project.shipment.observer.ShippingUpdate
 import org.example.project.statuses.Status
 
 class StandardShipment(id: String,

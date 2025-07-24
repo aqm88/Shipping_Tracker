@@ -1,8 +1,8 @@
 package org.example.project.shipment.shipmentTypes
 
-import org.example.project.shipment.Observer
-import org.example.project.shipment.ShippingUpdate
-import org.example.project.shipment.Subject
+import org.example.project.shipment.observer.Observer
+import org.example.project.shipment.observer.ShippingUpdate
+import org.example.project.shipment.observer.Subject
 import org.example.project.statuses.Status
 
 abstract class Shipment(

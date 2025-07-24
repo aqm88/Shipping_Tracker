@@ -10,7 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.*
-import org.example.project.shipment.ShipmentObserver
+import org.example.project.shipment.observer.ShipmentObserver
 import org.example.project.simulator.TrackingSimulator
 import java.text.SimpleDateFormat
 import java.util.Date

@@ -1,4 +1,4 @@
-package org.example.project.shipment
+package org.example.project.shipment.observer
 
 interface Observer {
     fun update(shipmentNotes: List<String>,
