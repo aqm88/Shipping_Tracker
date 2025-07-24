@@ -1,6 +1,6 @@
 package org.example.project.simulator.updates
 
-import org.example.project.shipment.Shipment
+import org.example.project.shipment.shipmentTypes.Shipment
 import org.example.project.statuses.Delivered
 
 object Deliver: Update {

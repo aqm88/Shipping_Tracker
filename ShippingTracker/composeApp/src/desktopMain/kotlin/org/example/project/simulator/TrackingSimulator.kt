@@ -2,7 +2,8 @@ package org.example.project.simulator
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import org.example.project.shipment.Shipment
+import org.example.project.shipment.shipmentTypes.Shipment
+import org.example.project.shipment.shipmentTypes.StandardShipment
 import org.example.project.simulator.updates.updateType
 import org.example.project.statuses.Created
 import java.io.File
@@ -15,7 +16,7 @@ class TrackingSimulator {
         return shipments.find { it.id == id }
     }
     fun createAndAddShipment(id: String) {
-        val newShipment = Shipment(
+        val newShipment = StandardShipment(
             id = id,
             status = Created
         )

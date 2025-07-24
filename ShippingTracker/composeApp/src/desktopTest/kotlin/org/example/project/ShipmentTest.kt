@@ -1,9 +1,10 @@
 package org.example.project
 
 import junit.framework.TestCase.assertTrue
-import org.example.project.shipment.Shipment
+import org.example.project.shipment.shipmentTypes.Shipment
 import org.example.project.shipment.ShipmentObserver
 import org.example.project.shipment.ShippingUpdate
+import org.example.project.shipment.shipmentTypes.StandardShipment
 import org.example.project.statuses.Canceled
 import org.example.project.statuses.Created
 import org.example.project.statuses.Delayed
@@ -18,7 +19,7 @@ class ShipmentTest {
 
     @Test
     fun testShipmentCreation(){
-        val shipment = Shipment(
+        val shipment = StandardShipment(
             id = "12345",
             status = Created,
             notes = ArrayList<String>(),
@@ -32,7 +33,7 @@ class ShipmentTest {
 
     @Test
     fun testShipmentUpdate(){
-        val shipment = Shipment(
+        val shipment = StandardShipment(
             id = "12345",
             status = Created,
             notes = ArrayList<String>(),
@@ -50,7 +51,7 @@ class ShipmentTest {
 
     @Test
     fun testNotifyObservers(){
-        val shipment = Shipment(
+        val shipment = StandardShipment(
             id = "12345",
             status = Created,
             notes = ArrayList<String>(),
@@ -88,7 +89,7 @@ class ShipmentTest {
 
     @Test
     fun testConstructorWithAllParams() {
-        val shipment = Shipment(
+        val shipment = StandardShipment(
             id = "A1",
             status = Created,
             notes = arrayListOf("Initial note"),
@@ -106,7 +107,7 @@ class ShipmentTest {
 
     @Test
     fun testConstructorWithDefaults() {
-        val shipment = Shipment(
+        val shipment = StandardShipment(
             id = "B2",
             status = Shipped
         )
@@ -122,27 +123,27 @@ class ShipmentTest {
     fun testAllStatusTypes() {
         val statuses = listOf(Created, Shipped /*, Delivered, Cancelled, etc.*/)
         for (status in statuses) {
-            val shipment = Shipment("C3", status)
+            val shipment = StandardShipment("C3", status)
             assertEquals(status.get(), shipment.status.get())
         }
     }
 
     @Test
     fun testEmptyNotesAndHistory() {
-        val shipment = Shipment("D4", Created, ArrayList(), ArrayList())
+        val shipment = StandardShipment("D4", Created, ArrayList(), ArrayList())
         assertTrue(shipment.notes.isEmpty())
         assertTrue(shipment.updateHistory.isEmpty())
     }
 
     @Test
     fun testNullExpectedDeliveryDate() {
-        val shipment = Shipment("E5", Created, expectedDeliveryDateTimestamp = null)
+        val shipment = StandardShipment("E5", Created, expectedDeliveryDateTimestamp = null)
         assertNull(shipment.expectedDeliveryDateTimestamp)
     }
 
     @Test
     fun testStatusReassignmentToSameValue() {
-        val shipment = Shipment("G7", Created)
+        val shipment = StandardShipment("G7", Created)
         shipment.status = Created
         assertEquals(1, shipment.updateHistory.size)
         shipment.status = Created

@@ -1,13 +1,16 @@
-package org.example.project.shipment
+package org.example.project.shipment.shipmentTypes
 
+import org.example.project.shipment.Observer
+import org.example.project.shipment.ShippingUpdate
+import org.example.project.shipment.Subject
 import org.example.project.statuses.Status
 
-class Shipment(
+abstract class Shipment(
     val id: String,
     status: Status,
     notes: ArrayList<String> = ArrayList<String>(),
     updateHistory: ArrayList<ShippingUpdate> = ArrayList<ShippingUpdate>(),
-    var expectedDeliveryDateTimestamp: Long? = null,
+    open var expectedDeliveryDateTimestamp: Long? = null,
     currentLocation: String? = null): Subject {
 
     private val observers = ArrayList<Observer>()
