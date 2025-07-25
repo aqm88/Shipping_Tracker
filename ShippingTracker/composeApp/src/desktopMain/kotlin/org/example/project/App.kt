@@ -29,7 +29,8 @@ fun formatTimestamp(timestamp: Long?): String {
 fun App() {
     val observers = remember { mutableStateListOf<ShipmentObserver>() }
     var shipmentIdInput by remember { mutableStateOf("") }
-    val coroutineScope = rememberCoroutineScope()
+    var showErrorDialog by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf("") }
 
     // Start simulation on launch
     LaunchedEffect(Unit) {
@@ -69,17 +70,11 @@ fun App() {
                                 shipmentLocation = shipment.currentLocation
                             )
                             shipment.registerObserver(observer)
+                            observers.add(observer)
                         } else {
-                            observer = ShipmentObserver(
-                                shipmentId = id,
-                                shipmentNotes = arrayListOf("Shipment not found in system!"),
-                                shipmentUpdateHistory = emptyList(),
-                                expectedShipmentDeliveryDate = null,
-                                shipmentStatus = "",
-                                shipmentLocation = null
-                            )
+                            errorMessage = "Shipment with ID '$id' not found."
+                            showErrorDialog = true
                         }
-                        observers.add(observer)
                         shipmentIdInput = ""
                     }
                 }) {
@@ -94,6 +89,12 @@ fun App() {
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
+                if (showErrorDialog) {
+                    ErrorPopup(errorMessage) {
+                        showErrorDialog = false
+                        errorMessage = ""
+                    }
+                }
                 observers.forEach { observer ->
                     Card(
                         modifier = Modifier
@@ -135,5 +136,21 @@ fun App() {
                 }
             }
         }
+
     }
 }
+
+@Composable
+fun ErrorPopup(errorMessage: String?, onDismiss: () -> Unit) {
+    if (errorMessage != null) {
+        AlertDialog(
+            onDismissRequest = onDismiss,
+            confirmButton = {
+                Button(onClick = onDismiss) { Text("OK") }
+            },
+            title = { Text("Error") },
+            text = { Text(errorMessage) }
+        )
+    }
+}
+
