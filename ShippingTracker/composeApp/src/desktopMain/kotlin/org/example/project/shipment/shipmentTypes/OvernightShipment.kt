@@ -18,6 +18,7 @@ class OvernightShipment(id: String,
             if (status != Delayed && newVal != null && newVal > latestDeliveryDate){
                 addNote("An overnight shipment was updated to have a delivery date later than the day after order was placed.")
             }
+            notifyObservers()
         }
     private val dayInMilliseconds: Long = 86400000
     private val latestDeliveryDate = timeCreated + dayInMilliseconds

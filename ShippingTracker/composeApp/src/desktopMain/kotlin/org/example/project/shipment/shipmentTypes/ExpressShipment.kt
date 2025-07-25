@@ -17,6 +17,7 @@ class ExpressShipment(id: String,
             if (status != Delayed && newVal != null && newVal > latestDeliveryDate){
                 addNote("An express shipment was updated to have a delivery date later than 3 days after order was placed.")
             }
+            notifyObservers()
         }
     private val threeDaysInMilliseconds: Long = 259200000
     private val latestDeliveryDate = timeCreated + threeDaysInMilliseconds

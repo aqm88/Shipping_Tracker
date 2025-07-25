@@ -18,6 +18,7 @@ class BulkShipment(id: String,
             if (status != Delayed && newVal != null && newVal < earliestDeliveryDate){
                 addNote("A bulk shipment was updated to have a delivery date earlier than 3 days after order was placed.")
             }
+            notifyObservers()
         }
     private val threeDaysInMilliseconds: Long = 259200000
     private val earliestDeliveryDate = timeCreated + threeDaysInMilliseconds
