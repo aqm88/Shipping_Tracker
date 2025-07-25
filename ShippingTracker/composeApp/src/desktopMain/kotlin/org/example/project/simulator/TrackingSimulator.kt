@@ -4,7 +4,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.example.project.shipment.shipmentTypes.Shipment
 import org.example.project.shipment.shipmentTypes.StandardShipment
-import org.example.project.simulator.updates.updateType
+import org.example.project.updates.updateType
 import org.example.project.statuses.Created
 import java.io.File
 

@@ -8,7 +8,6 @@ import org.example.project.shipment.shipmentTypes.BulkShipment
 import org.example.project.shipment.shipmentTypes.ExpressShipment
 import org.example.project.shipment.shipmentTypes.OvernightShipment
 import org.example.project.shipment.shipmentTypes.StandardShipment
-import org.example.project.statuses.Created
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlin.test.assertEquals

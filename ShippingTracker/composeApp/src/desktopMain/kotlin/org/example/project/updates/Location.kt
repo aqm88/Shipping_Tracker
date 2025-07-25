@@ -1,4 +1,4 @@
-package org.example.project.simulator.updates
+package org.example.project.updates
 
 import org.example.project.shipment.shipmentTypes.Shipment
 

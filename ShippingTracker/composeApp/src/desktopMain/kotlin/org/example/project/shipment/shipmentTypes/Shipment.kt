@@ -10,9 +10,14 @@ abstract class Shipment(
     status: Status,
     notes: ArrayList<String> = ArrayList<String>(),
     updateHistory: ArrayList<ShippingUpdate> = ArrayList<ShippingUpdate>(),
-    open var expectedDeliveryDateTimestamp: Long? = null,
+    expectedDeliveryDateTimestamp: Long? = null,
     currentLocation: String? = null): Subject {
 
+    open var expectedDeliveryDateTimestamp: Long? = expectedDeliveryDateTimestamp
+        set(value) {
+            field = value
+            notifyObservers()
+        }
     private val observers = ArrayList<Observer>()
     var status = status
         set(value) {

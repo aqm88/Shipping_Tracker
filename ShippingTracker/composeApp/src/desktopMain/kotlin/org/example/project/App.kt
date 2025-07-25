@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.*
+import org.example.project.server.TrackingServer
 import org.example.project.shipment.observer.ShipmentObserver
 import org.example.project.simulator.TrackingSimulator
 import java.text.SimpleDateFormat
@@ -26,7 +27,6 @@ fun formatTimestamp(timestamp: Long?): String {
 @Composable
 @Preview
 fun App() {
-    val simulator = remember { TrackingSimulator() }
     val observers = remember { mutableStateListOf<ShipmentObserver>() }
     var shipmentIdInput by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
@@ -34,7 +34,7 @@ fun App() {
     // Start simulation on launch
     LaunchedEffect(Unit) {
         withContext(Dispatchers.Default) {
-            simulator.runSimulation("test.txt")
+            TrackingServer.runServer()
         }
     }
 
@@ -57,7 +57,7 @@ fun App() {
                     val id = shipmentIdInput.trim()
                     print(id)
                     if (id.isNotEmpty()) {
-                        var shipment = simulator.findShipment(id)
+                        var shipment = TrackingServer.findShipment(id)
                         var observer: ShipmentObserver
                         if (shipment != null) {
                             observer =ShipmentObserver(
@@ -122,7 +122,7 @@ fun App() {
                                 Button(
                                     onClick = {
                                         // Remove observer from shipment if exists
-                                        simulator.findShipment(observer.shipmentId)?.removeObserver(observer)
+                                        TrackingServer.findShipment(observer.shipmentId)?.removeObserver(observer)
                                         observers.remove(observer)
                                     },
                                     modifier = Modifier.padding(top = 8.dp)

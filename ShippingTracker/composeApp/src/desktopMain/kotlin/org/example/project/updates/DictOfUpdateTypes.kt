@@ -1,4 +1,4 @@
-package org.example.project.simulator.updates
+package org.example.project.updates
 
 val updateType = mapOf(
     "shipped" to Ship,
